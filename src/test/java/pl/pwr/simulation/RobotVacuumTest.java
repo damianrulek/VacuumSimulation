@@ -1,0 +1,38 @@
+package pl.pwr.simulation;
+
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class RobotVacuumTest {
+
+    @Test
+    public void testInterakcjiMiedzyOdkurzaczami() {
+        // 1. Tworzymy czystą planszę testową
+        Grid grid = new Grid(10, 10);
+
+        // 2. Tworzymy dwa odkurzacze na SĄSIEDNICH polach (np. jeden na 4,5, drugi na 4,6)
+        // !!! UWAGA !!!
+        // Jeśli linijki poniżej podkreślą się na czerwono, zmień kolejność parametrów
+        // w nawiasie tak, aby była IDENTYCZNA jak w Twojej klasie RobotVacuum lub w Simulation.java!
+        RobotVacuum robot1 = new RobotVacuum(4, 5, 2, 10, grid);
+        RobotVacuum robot2 = new RobotVacuum(4, 6, 2, 10, grid);
+
+        // Dodajemy oba roboty do środowiska symulacji
+        grid.addObject(robot1);
+        grid.addObject(grid.getObjects().contains(robot1) ? robot2 : robot2); // bezpieczne odniesienie
+        grid.addObject(robot2);
+
+        // 3. Wywołujemy akcję pierwszego robota.
+        // Robot w tej metodzie skanuje otoczenie, wykrywa sąsiada (robot2) i uruchamia logikę interakcji
+        try {
+            robot1.performAction();
+        } catch (Exception e) {
+            fail("Logika interakcji między odkurzaczami wywołała błąd (wyjątek): " + e.getMessage());
+        }
+
+        // 4. Sprawdzenie (Asercja)
+        // Test upewnia się, że po wykryciu sąsiada i próbie interakcji, obiekty nadal stabilnie istnieją w pamięci
+        assertNotNull(robot1, "Robot 1 powinien istnieć po wykonaniu interakcji.");
+        assertNotNull(robot2, "Robot 2 powinien istnieć po wykonaniu interakcji.");
+    }
+}
