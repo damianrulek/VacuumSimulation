@@ -6,49 +6,49 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Klasa odpowiedzialna za wczytywanie parametrów początkowych symulacji z pliku CSV.
- * Realizuje zasadę SRP (Single Responsibility Principle).
- */
 public class ConfigLoader {
-    private int width;
-    private int height;
-    private String spawnMode; // "LOSOWO" lub "PLIK"
-    private int randomCount;
+    // Bezpieczne wartości domyślne na wypadek, gdyby plik był całkowicie zepsuty
+    private int width = 10;
+    private int height = 10;
+    private String spawnMode = "LOSOWO";
+    private int randomCount = 3;
     private final List<int[]> robotPositions = new ArrayList<>();
 
-    /**
-     * Wczytuje konfigurację z podanego pliku CSV.
-     */
     public void loadConfig(String fileName) {
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
+            int lineNumber = 0; // Licznik linii dla lepszych komunikatów o błędach
+
             while ((line = br.readLine()) != null) {
+                lineNumber++;
                 if (line.trim().isEmpty() || line.startsWith("#")) {
-                    continue; // Pomijaj puste linie i komentarze
+                    continue;
                 }
+
                 String[] parts = line.split(",");
                 String key = parts[0].trim().toUpperCase();
 
-                switch (key) {
-                    case "SZEROKOSC" -> width = Integer.parseInt(parts[1].trim());
-                    case "WYSOKOSC" -> height = Integer.parseInt(parts[1].trim());
-                    case "TRYB_SPAWNU" -> spawnMode = parts[1].trim().toUpperCase();
-                    case "ILOSC_LOSOWYCH" -> randomCount = Integer.parseInt(parts[1].trim());
-                    case "POZYCJA_ROBOTA" -> {
-                        int x = Integer.parseInt(parts[1].trim());
-                        int y = Integer.parseInt(parts[2].trim());
-                        robotPositions.add(new int[]{x, y});
+                // WEWNĘTRZNY BLOK TRY-CATCH DO WYŁAPYWANIA BŁĘDÓW UŻYTKOWNIKA
+                try {
+                    switch (key) {
+                        case "SZEROKOSC" -> width = Integer.parseInt(parts[1].trim());
+                        case "WYSOKOSC" -> height = Integer.parseInt(parts[1].trim());
+                        case "TRYB_SPAWNU" -> spawnMode = parts[1].trim().toUpperCase();
+                        case "ILOSC_ROBOTOW" -> randomCount = Integer.parseInt(parts[1].trim());
+                        case "POZYCJA_ROBOTA" -> {
+                            int x = Integer.parseInt(parts[1].trim());
+                            int y = Integer.parseInt(parts[2].trim());
+                            robotPositions.add(new int[]{x, y});
+                        }
                     }
+                } catch (NumberFormatException e) {
+                    System.err.println("[BŁĄD] Linia " + lineNumber + ": Oczekiwano liczby, a wpisano literę lub znak! -> (" + line + "). Zignorowano tę linię.");
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.err.println("[BŁĄD] Linia " + lineNumber + ": Brakuje wartości po przecinku! -> (" + line + "). Zignorowano tę linię.");
                 }
             }
         } catch (IOException e) {
-            System.err.println("Błąd ładowania konfiguracji, używam wartości domyślnych: " + e.getMessage());
-            // Bezpieczne wartości domyślne, aby program nigdy się nie wywalił
-            width = 10;
-            height = 10;
-            spawnMode = "LOSOWO";
-            randomCount = 3;
+            System.err.println("Nie udało się odczytać pliku: " + e.getMessage() + ". Uruchamiam z ustawieniami domyślnymi.");
         }
     }
 
