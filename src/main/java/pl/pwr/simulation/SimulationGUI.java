@@ -17,7 +17,7 @@ public class SimulationGUI extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         add(gridPanel);
 
-        // Dynamiczne dopasowanie rozmiaru okna do wymiarów siatki z konfiguracji
+        //dopasowanie rozmiaru okna do wymiarów siatki z konfiguracji
         int width = simulation.getGrid().getWidth() * cellSize + 16;
         int height = simulation.getGrid().getHeight() * cellSize + 39;
 
@@ -51,7 +51,7 @@ public class SimulationGUI extends JFrame {
                 g.drawLine(0, j * cellSize, grid.getWidth() * cellSize, j * cellSize);
             }
 
-            // Bezpieczne rysowanie obiektów z obsługą potencjalnego błędu współbieżności
+
             try {
                 List<SimulationObject> objects = grid.getObjects();
                 for (int i = 0; i < objects.size(); i++) {

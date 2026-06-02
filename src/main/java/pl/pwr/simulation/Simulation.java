@@ -94,7 +94,7 @@ public class Simulation {
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
-            // ----------------------
+
         }
 
         exportDataToCSV();

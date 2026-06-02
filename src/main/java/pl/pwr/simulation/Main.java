@@ -14,7 +14,7 @@ public class Main {
         // 3. Przekazujemy konfigurację do symulacji
         Simulation simulation = new Simulation(config);
 
-        // 4. Uruchamiamy GUI i symulację (bezpiecznie dla wątków Swing)
+        // 4. Uruchamiamy GUI i symulację
         SwingUtilities.invokeLater(() -> {
             SimulationGUI gui = new SimulationGUI(simulation);
             simulation.setGUI(gui); // Łączymy symulację z widokiem GUI

@@ -28,7 +28,7 @@ public class ConfigLoader {
                 String[] parts = line.split(",");
                 String key = parts[0].trim().toUpperCase();
 
-                // WEWNĘTRZNY BLOK TRY-CATCH DO WYŁAPYWANIA BŁĘDÓW UŻYTKOWNIKA
+
                 try {
                     switch (key) {
                         case "SZEROKOSC" -> width = Integer.parseInt(parts[1].trim());
