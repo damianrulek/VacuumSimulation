@@ -1,5 +1,8 @@
 package pl.pwr.simulation;
 
+/**
+ * Klasa testowa weryfikująca poprawność dodawania obiektó  oraz skanowania otoczenia planszy.
+ */
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

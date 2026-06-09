@@ -23,7 +23,7 @@ public class Grid {
      * Losowo generuje śmieci na planszy.
      */
     public void generateDirt() {
-        int dirtCount = random.nextInt(9) + 10; // Generuj od 9 do 19 śmieci
+        int dirtCount = random.nextInt(20) + 5; // Generuj od 9 do 14 śmieci
         for (int i = 0; i < dirtCount; i++) {
             int x = random.nextInt(width);
             int y = random.nextInt(height);

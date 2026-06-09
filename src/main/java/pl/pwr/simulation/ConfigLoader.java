@@ -1,5 +1,9 @@
 package pl.pwr.simulation;
 
+/**
+ * Klasa reprezentująca wczytywanie z pliku
+ */
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -28,7 +32,7 @@ public class ConfigLoader {
                 String[] parts = line.split(",");
                 String key = parts[0].trim().toUpperCase();
 
-
+                // WEWNĘTRZNY BLOK TRY-CATCH DO WYŁAPYWANIA BŁĘDÓW UŻYTKOWNIKA
                 try {
                     switch (key) {
                         case "SZEROKOSC" -> width = Integer.parseInt(parts[1].trim());

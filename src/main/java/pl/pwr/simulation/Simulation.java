@@ -1,5 +1,9 @@
 package pl.pwr.simulation;
 
+/**
+ * Klasa reprezentująca symulacje.
+ */
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -94,7 +98,7 @@ public class Simulation {
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
-
+            // ----------------------
         }
 
         exportDataToCSV();
