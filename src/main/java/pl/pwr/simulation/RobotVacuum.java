@@ -97,7 +97,7 @@ public class RobotVacuum extends SimulationObject {
     }
 
     /**
-     * Interakcja między dwoma odkurzaczami[cite: 265].
+     * Interakcja między dwoma odkurzaczami
      */
     public void interact(RobotVacuum other) {
         if (random.nextBoolean()) {

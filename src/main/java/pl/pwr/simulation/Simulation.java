@@ -1,21 +1,22 @@
 package pl.pwr.simulation;
 
-/**
- * Klasa reprezentująca symulacje.
- */
+
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+/**
+ * Klasa reprezentująca symulacje.
+ */
 
 public class Simulation {
     private boolean isRunning;
     private final Grid grid;
     private final List<RobotVacuum> vacuums;
     private final ConfigLoader config;
-    private SimulationGUI gui; // POLE DLA INTERFEJSU
+    private SimulationGUI gui;
 
     public Simulation(ConfigLoader config) {
         this.config = config;
@@ -24,7 +25,7 @@ public class Simulation {
         this.isRunning = false;
     }
 
-    // Setter umożliwiający podpięcie okienka GUI
+
     public void setGUI(SimulationGUI gui) {
         this.gui = gui;
     }
@@ -89,16 +90,16 @@ public class Simulation {
                 isRunning = false;
             }
 
-            // --- ZMIANY DLA GUI ---
+
             if (gui != null) {
-                gui.refresh(); // Odśwież rysunek na ekranie
+                gui.refresh(); // Odświeżanie rysunku na ekranie
             }
             try {
-                Thread.sleep(400); // Odczekaj 400ms między krokami (możesz zmniejszyć/zwiększyć)
+                Thread.sleep(400); // Odczekiwanie 400ms między krokami
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
-            // ----------------------
+
         }
 
         exportDataToCSV();

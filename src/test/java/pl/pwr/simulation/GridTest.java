@@ -1,10 +1,11 @@
 package pl.pwr.simulation;
 
+
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 /**
  * Klasa testowa weryfikująca poprawność dodawania obiektó  oraz skanowania otoczenia planszy.
  */
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class GridTest {
 

@@ -1,14 +1,15 @@
 package pl.pwr.simulation;
 
-/**
- * Klasa reprezentująca wczytywanie z pliku
- */
+
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+/**
+ * Klasa reprezentująca wczytywanie z pliku
+ */
 
 public class ConfigLoader {
     // Bezpieczne wartości domyślne na wypadek, gdyby plik był całkowicie zepsuty

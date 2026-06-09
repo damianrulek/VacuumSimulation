@@ -1,9 +1,10 @@
 package pl.pwr.simulation;
+
+
+import javax.swing.SwingUtilities;
 /**
  * Klasa reprezentująca punkt startowy aplikacji
  */
-
-import javax.swing.SwingUtilities;
 
 public class Main {
     public static void main(String[] args) {

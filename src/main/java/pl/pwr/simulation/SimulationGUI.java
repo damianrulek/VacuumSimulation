@@ -1,16 +1,17 @@
 package pl.pwr.simulation;
-/**
- * Klasa odpowiadająca za graficzne wyświetlenie symulacji.
- */
+
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
+/**
+ * Klasa odpowiadająca za graficzne wyświetlenie symulacji.
+ */
 
 public class SimulationGUI extends JFrame {
     private final Simulation simulation;
     private final GridPanel gridPanel;
-    private final int cellSize = 50; // Rozmiar jednej kratki w pikselach
+    private final int cellSize = 50;
 
     public SimulationGUI(Simulation simulation) {
         this.simulation = simulation;
@@ -54,7 +55,7 @@ public class SimulationGUI extends JFrame {
                 g.drawLine(0, j * cellSize, grid.getWidth() * cellSize, j * cellSize);
             }
 
-            // Bezpieczne rysowanie obiektów z obsługą potencjalnego błędu współbieżności
+
             try {
                 List<SimulationObject> objects = grid.getObjects();
                 for (int i = 0; i < objects.size(); i++) {
@@ -86,10 +87,10 @@ public class SimulationGUI extends JFrame {
                             g.setColor(new Color(46, 204, 113)); // Zielony
                         }
 
-                        // ZMIANA: Kwadrat wypełniający pole (1px marginesu, aby siatka była widoczna)
+
                         g.fillRect(x + 1, y + 1, cellSize - 2, cellSize - 2);
 
-                        // Dodatkowa czarna ramka wokół odkurzacza - idealnie widać kiedy się stykają
+
                         g.setColor(Color.BLACK);
                         g.drawRect(x + 1, y + 1, cellSize - 2, cellSize - 2);
                     }

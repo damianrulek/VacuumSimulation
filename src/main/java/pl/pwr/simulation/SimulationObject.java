@@ -4,7 +4,7 @@ package pl.pwr.simulation;
  * Klasa abstrakcyjna reprezentująca obiekt w symulacji.
  */
 public abstract class SimulationObject {
-    // Hermetyzacja danych - pola chronione (protected) zgodnie z diagramem
+    // Hermetyzacja danych
     protected int positionX;
     protected int positionY;
 
